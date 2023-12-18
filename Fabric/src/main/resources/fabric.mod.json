@@ -1,15 +1,15 @@
 {
   "schemaVersion": 1,
   "id": "omegamute",
-  "version": "3.2",
+  "version": "3.3",
 
   "name": "Omega Mute",
   "description": "[Client] The last mod you'll ever need for culling and silencing Minecraft sounds while in-game or via a file.",
   "authors": [ "Rick South" ],
   "contact": {
-    "homepage": "https://curseforge.com/minecraft/mc-mods/omega-mute",
-    "sources": "https://github.com/ricksouth/serilum-mc-mod-sources/tree/main/sources/Omega%20Mute",
-    "issues": "https://github.com/ricksouth/serilum-mc-mods/labels/Mod:%20Omega%20Mute"
+    "homepage": "https://serilum.com/mod/omega-mute",
+    "sources": "https://github.com/Serilum/Omega-Mute",
+    "issues": "https://github.com/Serilum/.issue-tracker/labels/Mod:%20Omega%20Mute"
   },
 
   "license": "All Right Reserved",
@@ -23,7 +23,7 @@
     "fabric": "*",
     "minecraft": ">=1.20",
     "java": ">=17",
-    "collective": ">=7.3"
+    "collective": ">=7.21"
   },
 
   "custom": {
