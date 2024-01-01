@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "omegamute",
-  "version": "3.3",
+  "version": "3.4",
 
   "name": "Omega Mute",
   "description": "[Client] The last mod you'll ever need for culling and silencing Minecraft sounds while in-game or via a file.",
@@ -23,7 +23,7 @@
     "fabric": "*",
     "minecraft": ">=1.20",
     "java": ">=17",
-    "collective": ">=7.21"
+    "collective": ">=7.30"
   },
 
   "custom": {
