@@ -1,10 +1,8 @@
 package com.natamus.omegamute;
 
 import com.natamus.collective.check.RegisterMod;
-import com.natamus.omegamute.forge.events.ForgeKeyMappingRegister;
-import com.natamus.omegamute.forge.events.ForgeMuteEvent;
+import com.natamus.omegamute.forge.events.ForgeSoundEvents;
 import com.natamus.omegamute.util.Reference;
-import com.natamus.omegamute.util.Util;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -24,7 +22,6 @@ public class ModForge {
 		IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
 		modEventBus.addListener(this::loadComplete);
-		modEventBus.register(new ForgeKeyMappingRegister());
 
 		setGlobalConstants();
 		ModCommon.init();
@@ -33,14 +30,7 @@ public class ModForge {
 	}
 
 	private void loadComplete(final FMLLoadCompleteEvent event) {
-		try {
-			Util.loadSoundFile();
-		} catch (Exception ex) {
-			System.out.println("Something went wrong while generating the sound file. Omega Mute has been disabled.");
-			return;
-		}
-
-    	MinecraftForge.EVENT_BUS.register(new ForgeMuteEvent());
+    	MinecraftForge.EVENT_BUS.register(new ForgeSoundEvents());
 	}
 
 	private static void setGlobalConstants() {

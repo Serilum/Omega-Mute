@@ -1,39 +1,40 @@
 package com.natamus.omegamute;
 
-import com.mojang.blaze3d.platform.InputConstants;
 import com.natamus.collective.fabric.callbacks.CollectiveSoundEvents;
-import com.natamus.omegamute.fabric.cmds.FabricCommandOmega;
 import com.natamus.omegamute.data.Constants;
-import com.natamus.omegamute.events.MuteEvent;
+import com.natamus.omegamute.data.Variables;
+import com.natamus.omegamute.events.SoundEvents;
+import com.natamus.omegamute.fabric.cmds.FabricCommandOmega;
 import com.natamus.omegamute.util.Util;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.command.v2.ClientCommandRegistrationCallback;
-import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
-import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
-import net.minecraft.client.KeyMapping;
+import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientEntityEvents;
+import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.resources.sounds.SoundInstance;
 import net.minecraft.client.sounds.SoundEngine;
+import net.minecraft.world.entity.Entity;
 
 public class ModFabricClient implements ClientModInitializer {
 	@Override
 	public void onInitializeClient() {
-		Constants.hotkey = KeyBindingHelper.registerKeyBinding(new KeyMapping("omegamute.key.reload", InputConstants.Type.KEYSYM, 46, "key.categories.misc"));
 
-		ClientTickEvents.END_CLIENT_TICK.register(client -> {
-			while (Constants.hotkey.isDown()) {
-				MuteEvent.onHotkeyPress();
-				Constants.hotkey.setDown(false);
+
+		ClientEntityEvents.ENTITY_LOAD.register((Entity entity, ClientLevel world) -> {
+			if (Variables.soundFileLoaded) {
+				return;
 			}
-		}); 
-		
- 		try {
-			Util.loadSoundFile();
-		} catch (Exception ex) {
-			return;
-		}
- 		
+
+			try {
+				Util.loadSoundFile();
+			} catch (Exception ex) {
+				Constants.logger.warn("Something went wrong while generating the sound file.");
+			}
+
+			Variables.soundFileLoaded = true;
+		});
+
 		CollectiveSoundEvents.SOUND_PLAY.register((SoundEngine soundEngine, SoundInstance soundInstance) -> {
-			return MuteEvent.onSoundEvent(soundEngine, soundInstance);
+			return SoundEvents.onSoundEvent(soundEngine, soundInstance);
 		});
 
 		ClientCommandRegistrationCallback.EVENT.register((dispatcher, registryAccess) -> {

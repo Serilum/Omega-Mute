@@ -1,10 +1,8 @@
 package com.natamus.omegamute;
 
 import com.natamus.collective.check.RegisterMod;
-import com.natamus.omegamute.neoforge.events.NeoForgeKeyMappingRegister;
-import com.natamus.omegamute.neoforge.events.NeoForgeMuteEvent;
+import com.natamus.omegamute.neoforge.events.NeoForgeSoundEvents;
 import com.natamus.omegamute.util.Reference;
-import com.natamus.omegamute.util.Util;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.common.Mod;
@@ -21,7 +19,6 @@ public class ModNeoForge {
 		}
 
 		modEventBus.addListener(this::loadComplete);
-		modEventBus.register(NeoForgeKeyMappingRegister.class);
 
 		setGlobalConstants();
 		ModCommon.init();
@@ -30,14 +27,7 @@ public class ModNeoForge {
 	}
 
 	private void loadComplete(final FMLLoadCompleteEvent event) {
-		try {
-			Util.loadSoundFile();
-		} catch (Exception ex) {
-			System.out.println("Something went wrong while generating the sound file. Omega Mute has been disabled.");
-			return;
-		}
-
-		NeoForge.EVENT_BUS.register(NeoForgeMuteEvent.class);
+		NeoForge.EVENT_BUS.register(NeoForgeSoundEvents.class);
 	}
 
 	private static void setGlobalConstants() {
