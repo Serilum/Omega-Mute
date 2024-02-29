@@ -15,29 +15,45 @@ public class FabricCommandOmega {
 			.executes((command) -> {
                 return CommandOmega.reload();
 			}))
+
 			.then(ClientCommandManager.literal("query")
 			.executes((command) -> {
 				return CommandOmega.query();
 			}))
+
 			.then(ClientCommandManager.literal("listen").requires((iCommandSender) -> iCommandSender.getEntity() instanceof Player)
 			.executes((command) -> {
-				return CommandOmega.listen();
+				return CommandOmega.listen(false);
 			}))
+			.then(ClientCommandManager.literal("listen").requires((iCommandSender) -> iCommandSender.getEntity() instanceof Player)
+			.then(ClientCommandManager.literal("all")
+			.executes((command) -> {
+				return CommandOmega.listen(true);
+			})))
+
 			.then(ClientCommandManager.literal("mute")
 			.then(ClientCommandManager.argument("string-contains", StringArgumentType.word())
 			.executes((command) -> {
 				return CommandOmega.mute(StringArgumentType.getString(command, "string-contains"));
 			})))
+
 			.then(ClientCommandManager.literal("cull")
 			.then(ClientCommandManager.argument("cull-time", IntegerArgumentType.integer(0, 3600))
 			.then(ClientCommandManager.argument("string-contains", StringArgumentType.word())
 			.executes((command) -> {
 				return CommandOmega.cull(StringArgumentType.getString(command, "string-contains"), IntegerArgumentType.getInteger(command, "cull-time"));
 			}))))
+
 			.then(ClientCommandManager.literal("unmute")
 			.then(ClientCommandManager.argument("string-contains", StringArgumentType.word())
 			.executes((command) -> {
                 return CommandOmega.unmute(StringArgumentType.getString(command, "string-contains"));
+			})))
+
+			.then(ClientCommandManager.literal("settings")
+			.then(ClientCommandManager.literal("serilum")
+			.executes((command) -> {
+				return CommandOmega.setupSettings("serilum");
 			})))
 		);
 	}
