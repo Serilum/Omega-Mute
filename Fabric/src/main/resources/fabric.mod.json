@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "omegamute",
-  "version": "4.0",
+  "version": "4.1",
 
   "name": "Omega Mute",
   "description": "[Client] The last mod you'll ever need for culling and silencing Minecraft sounds while in-game or via a file.",
@@ -38,7 +38,7 @@
 	  " ",
 	  "Thank you very much to my Membership sponsors for supporting the development of this mod!",
 	  " ",
-	  "If you would like to contribute too, check out https://ricksouth.com/donate.",
+	  "If you would like to contribute too, check out https://serilum.com/donate.",
 	  " ",
 	  "Membership sponsors:",
 	  " Alister",
