@@ -1,6 +1,7 @@
 package com.natamus.omegamute;
 
 import com.natamus.collective.check.RegisterMod;
+import com.natamus.collective.check.ShouldLoadCheck;
 import com.natamus.omegamute.neoforge.events.NeoForgeSoundEvents;
 import com.natamus.omegamute.util.Reference;
 import net.neoforged.api.distmarker.Dist;
@@ -14,6 +15,10 @@ import net.neoforged.neoforge.common.NeoForge;
 public class ModNeoForge {
 	
 	public ModNeoForge(IEventBus modEventBus) {
+		if (!ShouldLoadCheck.shouldLoad(Reference.MOD_ID)) {
+			return;
+		}
+
 		if (!FMLEnvironment.dist.equals(Dist.CLIENT)) {
 			return;
 		}
