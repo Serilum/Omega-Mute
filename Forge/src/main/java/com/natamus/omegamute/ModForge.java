@@ -1,6 +1,7 @@
 package com.natamus.omegamute;
 
 import com.natamus.collective.check.RegisterMod;
+import com.natamus.collective.check.ShouldLoadCheck;
 import com.natamus.omegamute.forge.events.ForgeSoundEvents;
 import com.natamus.omegamute.util.Reference;
 import net.minecraftforge.api.distmarker.Dist;
@@ -15,6 +16,10 @@ import net.minecraftforge.fml.loading.FMLEnvironment;
 public class ModForge {
 	
 	public ModForge() {
+		if (!ShouldLoadCheck.shouldLoad(Reference.MOD_ID)) {
+			return;
+		}
+
 		if (!FMLEnvironment.dist.equals(Dist.CLIENT)) {
 			return;
 		}

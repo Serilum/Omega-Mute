@@ -7,6 +7,8 @@ import com.natamus.omegamute.events.SoundEvents;
 import com.natamus.omegamute.fabric.cmds.FabricCommandOmega;
 import com.natamus.omegamute.util.Util;
 import net.fabricmc.api.ClientModInitializer;
+import com.natamus.omegamute.util.Reference;
+import com.natamus.collective.check.ShouldLoadCheck;
 import net.fabricmc.fabric.api.client.command.v2.ClientCommandRegistrationCallback;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientEntityEvents;
 import net.minecraft.client.multiplayer.ClientLevel;
@@ -17,6 +19,10 @@ import net.minecraft.world.entity.Entity;
 public class ModFabricClient implements ClientModInitializer {
 	@Override
 	public void onInitializeClient() {
+		if (!ShouldLoadCheck.shouldLoad(Reference.MOD_ID)) {
+			return;
+		}
+
 
 
 		ClientEntityEvents.ENTITY_LOAD.register((Entity entity, ClientLevel world) -> {
