@@ -1,13 +1,13 @@
-<h2>Omega Mute</h2>
-<p><a href="https://github.com/Serilum/Omega-Mute"><img src="https://serilum.com/assets/data/logo/omega-mute.png"></a></p><h2>Download</h2>
-<p>You can download Omega Mute on CurseForge and Modrinth:</p><p>&nbsp;&nbsp;CurseForge: &nbsp;&nbsp;<a href="https://curseforge.com/minecraft/mc-mods/omega-mute">https://curseforge.com/minecraft/mc-mods/omega-mute</a><br>&nbsp;&nbsp;Modrinth: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://modrinth.com/mod/omega-mute">https://modrinth.com/mod/omega-mute</a></p>
-<h2>Issue Tracker</h2>
-<p>To keep a better overview of all mods, the issue tracker is located in a separate repository.<br>&nbsp;&nbsp;For issues, ideas, suggestions or anything else, please follow this link:</p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;-> <a href="https://serilum.com/url/issue-tracker">Issue Tracker</a></p>
-<h2>Pull Requests</h2>
-<p>Because of the way mod loader files are bundled into one jar, some extra information is needed to do a PR.<br>&nbsp;&nbsp;A wiki page entry about it is available here:</p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;-> <a href="https://serilum.com/url/pull-requests">Pull Request Information</a></p>
-<h2>Mod Description</h2>
+<h2>Omega Mute</h2>
+<p><a href="https://github.com/Serilum/Omega-Mute"><img src="https://serilum.com/assets/data/logo/omega-mute.png"></a></p><h2>Download</h2>
+<p>You can download Omega Mute on CurseForge and Modrinth:</p><p>&nbsp;&nbsp;CurseForge: &nbsp;&nbsp;<a href="https://curseforge.com/minecraft/mc-mods/omega-mute">https://curseforge.com/minecraft/mc-mods/omega-mute</a><br>&nbsp;&nbsp;Modrinth: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://modrinth.com/mod/omega-mute">https://modrinth.com/mod/omega-mute</a></p>
+<h2>Issue Tracker</h2>
+<p>To keep a better overview of all mods, the issue tracker is located in a separate repository.<br>&nbsp;&nbsp;For issues, ideas, suggestions or anything else, please follow this link:</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;-> <a href="https://serilum.com/url/issue-tracker">Issue Tracker</a></p>
+<h2>Pull Requests</h2>
+<p>Because of the way mod loader files are bundled into one jar, some extra information is needed to do a PR.<br>&nbsp;&nbsp;A wiki page entry about it is available here:</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;-> <a href="https://serilum.com/url/pull-requests">Pull Request Information</a></p>
+<h2>Mod Description</h2>
 <p style="text-align:center"><a href="https://serilum.com/" target="_blank" rel="nofollow"><img src="https://github.com/Serilum/.cdn/raw/main/description/header/header.png" alt="" width="838" height="400"></a></p>
 <p style="text-align:center"><a href="https://curseforge.com/members/serilum/projects" target="_blank" rel="nofollow"><img src="https://raw.githubusercontent.com/Serilum/.data-workflow/main/badges/svg/curseforge.svg" width="200"></a> <a href="https://modrinth.com/user/Serilum" target="_blank" rel="nofollow"><img src="https://raw.githubusercontent.com/Serilum/.data-workflow/main/badges/svg/modrinth.svg" width="200"></a> <a href="https://patreon.com/serilum" target="_blank" rel="nofollow"><img src="https://raw.githubusercontent.com/Serilum/.data-workflow/main/badges/svg/patreon.svg" width="200"></a> <a href="https://youtube.com/@serilum" target="_blank" rel="nofollow"><img src="https://raw.githubusercontent.com/Serilum/.data-workflow/main/badges/svg/youtube.svg" width="200"></a></p>
 <p><strong><span style="font-size:24px">Requires the library mod&nbsp;<a style="font-size:24px" href="https://curseforge.com/minecraft/mc-mods/collective" target="_blank" rel="nofollow">Collective</a>.</span></strong><br><br><strong>&nbsp;&nbsp;&nbsp;This mod is part of <span style="color:#008000"><a style="color:#008000" href="https://curseforge.com/minecraft/modpacks/the-vanilla-experience" target="_blank" rel="nofollow">The Vanilla Experience</a></span> modpack and <span style="color:#006994"><a style="color:#006994" href="https://curseforge.com/minecraft/mc-mods/serilums-client-bundle" target="_blank" rel="nofollow">Serilum's Client Bundle</a></span> mod.</strong><br><span style="font-size:18px">Omega Mute is a <strong><strong>client-side</strong></strong> mod which allows you to mute/silence all Minecraft sounds while in-game or via a file. You won't need anything else to take full control over all in-game sounds! This <strong>works for modded sounds</strong> as well. Just place an exclamation mark in front of the sound you want to mute inside the config soundmap file, or use the commands.<br><br>The mod contains a sound culling feature. With this you can for example allow a sound to play every 10 seconds. This still allows being immersed into the game without having the same sound over and over and over again when near a source.</span><br><br><br></p>
