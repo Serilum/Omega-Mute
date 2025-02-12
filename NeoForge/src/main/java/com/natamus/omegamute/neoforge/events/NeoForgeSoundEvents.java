@@ -7,12 +7,10 @@ import com.natamus.omegamute.events.SoundEvents;
 import com.natamus.omegamute.util.Util;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.client.event.RegisterClientCommandsEvent;
 import net.neoforged.neoforge.client.event.sound.PlaySoundEvent;
 import net.neoforged.neoforge.event.level.LevelEvent;
 
-@EventBusSubscriber(value = Dist.CLIENT)
 public class NeoForgeSoundEvents {
 	@SubscribeEvent
 	public static void onLevelLoad(LevelEvent.Load e) {

@@ -10,12 +10,10 @@ import net.minecraftforge.client.event.RegisterClientCommandsEvent;
 import net.minecraftforge.client.event.sound.PlaySoundEvent;
 import net.minecraftforge.event.level.LevelEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 
-@EventBusSubscriber(value = Dist.CLIENT)
 public class ForgeSoundEvents {
 	@SubscribeEvent
-	public void onLevelLoad(LevelEvent.Load e) {
+	public static void onLevelLoad(LevelEvent.Load e) {
 		if (Variables.soundFileLoaded) {
 			return;
 		}
@@ -30,12 +28,12 @@ public class ForgeSoundEvents {
 	}
 
     @SubscribeEvent
-    public void registerCommands(RegisterClientCommandsEvent e) {
+    public static void registerCommands(RegisterClientCommandsEvent e) {
     	CommandOmega.register(e.getDispatcher());
     }
 
 	@SubscribeEvent
-	public void onSoundEvent(PlaySoundEvent e) {
+	public static void onSoundEvent(PlaySoundEvent e) {
 		if (!SoundEvents.onSoundEvent(e.getEngine(), e.getOriginalSound())) {
 			e.setSound(null);
 		}
