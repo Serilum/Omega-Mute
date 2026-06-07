@@ -1,4 +1,5 @@
 package com.natamus.omegamute.cmds;
+import com.natamus.omegamute.util.Reference;
 
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.IntegerArgumentType;
@@ -71,16 +72,16 @@ public class CommandOmega {
 			return 1;
 		}
 
-		MessageFunctions.sendMessage(Constants.mc.player, "Reloading the omega mute soundmap file now.", ChatFormatting.DARK_GREEN);
+		MessageFunctions.sendTranslatableMessage(Constants.mc.player, "collective.omegamute.message.reloadingomegamute", ChatFormatting.DARK_GREEN);
 		try {
 			if (Util.loadSoundFile()) {
-				MessageFunctions.sendMessage(Constants.mc.player, "New soundmap changes successfully loaded.", ChatFormatting.DARK_GREEN);
+				MessageFunctions.sendTranslatableMessage(Constants.mc.player, "collective.omegamute.message.soundmapchangessuccessfully", ChatFormatting.DARK_GREEN);
 			}
 			else {
-				MessageFunctions.sendMessage(Constants.mc.player, "No soundmap found, a new one has been generated.", ChatFormatting.DARK_GREEN);
+				MessageFunctions.sendTranslatableMessage(Constants.mc.player, "collective.omegamute.message.soundmapfoundgenerated", ChatFormatting.DARK_GREEN);
 			}
 		} catch (Exception ex) {
-			MessageFunctions.sendMessage(Constants.mc.player, "Something went wrong while loading the soundmap file.", ChatFormatting.RED);
+			MessageFunctions.sendTranslatableMessage(Constants.mc.player, "collective.omegamute.message.somethingwentwrong", ChatFormatting.RED);
 		}
 		return 1;
 	}
@@ -107,7 +108,7 @@ public class CommandOmega {
 				return 1;
 			}
 
-			MessageFunctions.sendMessage(Constants.mc.player, "The following sound events are currently muted:", ChatFormatting.DARK_GREEN);
+			MessageFunctions.sendTranslatableMessage(Constants.mc.player, "collective.omegamute.message.followingsoundevents", ChatFormatting.DARK_GREEN);
 			MessageFunctions.sendMessage(Constants.mc.player, combined.toString(), ChatFormatting.YELLOW);
 		}
 		else {
@@ -115,7 +116,7 @@ public class CommandOmega {
 				return 1;
 			}
 
-			MessageFunctions.sendMessage(Constants.mc.player, "There are currently no sound events muted.", ChatFormatting.DARK_GREEN);
+			MessageFunctions.sendTranslatableMessage(Constants.mc.player, "collective.omegamute.message.currentlysoundevents", ChatFormatting.DARK_GREEN);
 		}
 
 		return 1;
@@ -132,18 +133,18 @@ public class CommandOmega {
 		if (Variables.playerIsListening) {
 			Variables.playerIsListening = false;
 
-			MessageFunctions.sendMessage(Constants.mc.player, "You have stopped listening to the active sounds. To toggle it on use '/omegamute listen' again.", ChatFormatting.DARK_GREEN, true);
+			MessageFunctions.sendTranslatableMessage(Constants.mc.player, "collective.omegamute.message.stoppedlisteningactive", true, ChatFormatting.DARK_GREEN);
 		}
 		else {
 			Variables.playerIsListening = true;
 
-			MessageFunctions.sendMessage(Constants.mc.player, "You are now listening to the active sounds. To toggle it off use '/omegamute listen' again.", ChatFormatting.DARK_GREEN, true);
+			MessageFunctions.sendTranslatableMessage(Constants.mc.player, "collective.omegamute.message.listeningactivesounds", true, ChatFormatting.DARK_GREEN);
 
 			if (listenToAll) {
-				MessageFunctions.sendMessage(Constants.mc.player, "Listening to all sounds. To only see sounds once, use '/omegamute listen'", ChatFormatting.GRAY);
+				MessageFunctions.sendTranslatableMessage(Constants.mc.player, "collective.omegamute.message.listeningsoundssee", ChatFormatting.GRAY);
 			}
 			else {
-				MessageFunctions.sendMessage(Constants.mc.player, "Listening to sounds once. To see all sound occurences, use '/omegamute listen all'", ChatFormatting.GRAY);
+				MessageFunctions.sendTranslatableMessage(Constants.mc.player, "collective.omegamute.message.listeningsoundsonce", ChatFormatting.GRAY);
 			}
 		}
 
@@ -158,12 +159,12 @@ public class CommandOmega {
 
 		if (muted.size() > 0) {
 			String combined = String.join(", ", muted);
-			MessageFunctions.sendMessage(Constants.mc.player, "By using the wildcard string '" + wildcard + "', the following " + muted.size() + " sound events have been muted:", ChatFormatting.DARK_GREEN);
+			MessageFunctions.sendTranslatableMessage(Constants.mc.player, "collective.omegamute.message.byusingwildcardstring", ChatFormatting.DARK_GREEN, wildcard, muted.size());
 			MessageFunctions.sendMessage(Constants.mc.player, combined, ChatFormatting.YELLOW);
-			MessageFunctions.sendMessage(Constants.mc.player, "The soundmap file has been updated.", ChatFormatting.DARK_GREEN);
+			MessageFunctions.sendTranslatableMessage(Constants.mc.player, "collective.omegamute.message.soundmapfileupdated", ChatFormatting.DARK_GREEN);
 		}
 		else {
-			MessageFunctions.sendMessage(Constants.mc.player, "No sound events were found by using the wildcard string '" + wildcard + "', try a different query.", ChatFormatting.RED);
+			MessageFunctions.sendTranslatableMessage(Constants.mc.player, "collective.omegamute.message.soundeventsfound", ChatFormatting.RED, wildcard);
 		}
 
 		return 1;
@@ -177,12 +178,12 @@ public class CommandOmega {
 
 		if (muted.size() > 0) {
 			String combined = String.join(", ", muted);
-			MessageFunctions.sendMessage(Constants.mc.player, "By using the wildcard string '" + wildcard + "', the following " + muted.size() + " sound events have been muted with a cull-time of " + culltime + ":", ChatFormatting.DARK_GREEN);
+			MessageFunctions.sendTranslatableMessage(Constants.mc.player, "collective.omegamute.message.byusingwildcardstringfollowingsound", ChatFormatting.DARK_GREEN, wildcard, muted.size(), culltime);
 			MessageFunctions.sendMessage(Constants.mc.player, combined, ChatFormatting.YELLOW);
-			MessageFunctions.sendMessage(Constants.mc.player, "The soundmap file has been updated.", ChatFormatting.DARK_GREEN);
+			MessageFunctions.sendTranslatableMessage(Constants.mc.player, "collective.omegamute.message.soundmapfileupdated", ChatFormatting.DARK_GREEN);
 		}
 		else {
-			MessageFunctions.sendMessage(Constants.mc.player, "No sound events were found by using the wildcard string '" + wildcard + "', try a different query.", ChatFormatting.RED);
+			MessageFunctions.sendTranslatableMessage(Constants.mc.player, "collective.omegamute.message.soundeventsfound", ChatFormatting.RED, wildcard);
 		}
 
 		return 1;
@@ -196,11 +197,11 @@ public class CommandOmega {
 
 		if (unmuted.size() > 0) {
 			String combined = String.join(", ", unmuted);
-			MessageFunctions.sendMessage(Constants.mc.player, "By using the wildcard string '" + wildcard + "', the following " + unmuted.size() + " sound events have been unmuted:", ChatFormatting.DARK_GREEN);
+			MessageFunctions.sendTranslatableMessage(Constants.mc.player, "collective.omegamute.message.byusingwildcardstringfollowing", ChatFormatting.DARK_GREEN, wildcard, unmuted.size());
 			MessageFunctions.sendMessage(Constants.mc.player, combined, ChatFormatting.YELLOW);
-			MessageFunctions.sendMessage(Constants.mc.player, "The soundmap file has been updated.", ChatFormatting.DARK_GREEN);}
+			MessageFunctions.sendTranslatableMessage(Constants.mc.player, "collective.omegamute.message.soundmapfileupdated", ChatFormatting.DARK_GREEN);}
 		else {
-			MessageFunctions.sendMessage(Constants.mc.player, "No sound events were found by using the wildcard string '" + wildcard + "', try a different query.", ChatFormatting.RED);
+			MessageFunctions.sendTranslatableMessage(Constants.mc.player, "collective.omegamute.message.soundeventsfound", ChatFormatting.RED, wildcard);
 		}
 
 		return 1;
@@ -216,7 +217,7 @@ public class CommandOmega {
 			MessageFunctions.sendMessage(Constants.mc.player, " ", ChatFormatting.WHITE);
 			mute("entity.cat.stray_ambient"); // Because my IRL cats don't like the meows.
 
-			MessageFunctions.sendMessage(Constants.mc.player, "Serilum's favourite Omega Mute settings have been set.", ChatFormatting.GOLD, true);
+			MessageFunctions.sendTranslatableMessage(Constants.mc.player, "collective.omegamute.message.serilumfavouritesettings", true, ChatFormatting.GOLD, Reference.NAME);
 		}
 
 		return 1;
