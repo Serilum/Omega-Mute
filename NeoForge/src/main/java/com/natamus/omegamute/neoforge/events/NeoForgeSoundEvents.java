@@ -5,7 +5,6 @@ import com.natamus.omegamute.data.Constants;
 import com.natamus.omegamute.data.Variables;
 import com.natamus.omegamute.events.SoundEvents;
 import com.natamus.omegamute.util.Util;
-import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.neoforge.client.event.RegisterClientCommandsEvent;
 import net.neoforged.neoforge.client.event.sound.PlaySoundEvent;

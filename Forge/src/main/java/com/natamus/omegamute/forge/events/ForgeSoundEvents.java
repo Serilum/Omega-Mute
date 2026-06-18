@@ -5,7 +5,6 @@ import com.natamus.omegamute.data.Constants;
 import com.natamus.omegamute.data.Variables;
 import com.natamus.omegamute.events.SoundEvents;
 import com.natamus.omegamute.util.Util;
-import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.RegisterClientCommandsEvent;
 import net.minecraftforge.client.event.sound.PlaySoundEvent;
 import net.minecraftforge.event.level.LevelEvent;

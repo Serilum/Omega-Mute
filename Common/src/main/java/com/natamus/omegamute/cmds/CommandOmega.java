@@ -11,7 +11,6 @@ import com.natamus.omegamute.util.Util;
 import net.minecraft.ChatFormatting;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
-import net.minecraft.server.permissions.Permissions;
 import net.minecraft.world.entity.player.Player;
 
 import java.util.ArrayList;
