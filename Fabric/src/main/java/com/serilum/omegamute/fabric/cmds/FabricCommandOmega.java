@@ -1,9 +1,9 @@
-package com.natamus.omegamute.fabric.cmds;
+package com.serilum.omegamute.fabric.cmds;
 
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.IntegerArgumentType;
 import com.mojang.brigadier.arguments.StringArgumentType;
-import com.natamus.omegamute.cmds.CommandOmega;
+import com.serilum.omegamute.cmds.CommandOmega;
 import net.fabricmc.fabric.api.client.command.v2.ClientCommandManager;
 import net.fabricmc.fabric.api.client.command.v2.FabricClientCommandSource;
 import net.minecraft.world.entity.player.Player;
@@ -13,7 +13,7 @@ public class FabricCommandOmega {
 		dispatcher.register(ClientCommandManager.literal("omegamute")
 			.then(ClientCommandManager.literal("reload")
 			.executes((command) -> {
-                return CommandOmega.reload();
+				return CommandOmega.reload();
 			}))
 
 			.then(ClientCommandManager.literal("query")
@@ -47,7 +47,7 @@ public class FabricCommandOmega {
 			.then(ClientCommandManager.literal("unmute")
 			.then(ClientCommandManager.argument("string-contains", StringArgumentType.word())
 			.executes((command) -> {
-                return CommandOmega.unmute(StringArgumentType.getString(command, "string-contains"));
+				return CommandOmega.unmute(StringArgumentType.getString(command, "string-contains"));
 			})))
 
 			.then(ClientCommandManager.literal("settings")

@@ -1,8 +1,8 @@
-package com.natamus.omegamute.events;
+package com.serilum.omegamute.events;
 
 import com.natamus.collective.functions.MessageFunctions;
-import com.natamus.omegamute.data.Constants;
-import com.natamus.omegamute.data.Variables;
+import com.serilum.omegamute.data.Constants;
+import com.serilum.omegamute.data.Variables;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.resources.sounds.SoundInstance;
 import net.minecraft.client.sounds.SoundEngine;

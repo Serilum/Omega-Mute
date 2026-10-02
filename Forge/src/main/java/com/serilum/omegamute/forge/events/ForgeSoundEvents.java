@@ -1,11 +1,10 @@
-package com.natamus.omegamute.forge.events;
+package com.serilum.omegamute.forge.events;
 
-import com.natamus.omegamute.cmds.CommandOmega;
-import com.natamus.omegamute.data.Constants;
-import com.natamus.omegamute.data.Variables;
-import com.natamus.omegamute.events.SoundEvents;
-import com.natamus.omegamute.util.Util;
-import net.minecraftforge.api.distmarker.Dist;
+import com.serilum.omegamute.cmds.CommandOmega;
+import com.serilum.omegamute.data.Constants;
+import com.serilum.omegamute.data.Variables;
+import com.serilum.omegamute.events.SoundEvents;
+import com.serilum.omegamute.util.Util;
 import net.minecraftforge.client.event.RegisterClientCommandsEvent;
 import net.minecraftforge.client.event.sound.PlaySoundEvent;
 import net.minecraftforge.event.level.LevelEvent;
@@ -27,10 +26,10 @@ public class ForgeSoundEvents {
 		Variables.soundFileLoaded = true;
 	}
 
-    @SubscribeEvent
-    public static void registerCommands(RegisterClientCommandsEvent e) {
-    	CommandOmega.register(e.getDispatcher());
-    }
+	@SubscribeEvent
+	public static void registerCommands(RegisterClientCommandsEvent e) {
+		CommandOmega.register(e.getDispatcher());
+	}
 
 	@SubscribeEvent
 	public static void onSoundEvent(PlaySoundEvent e) {

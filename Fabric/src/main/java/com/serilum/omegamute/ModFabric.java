@@ -1,8 +1,8 @@
-package com.natamus.omegamute;
+package com.serilum.omegamute;
 
 import com.natamus.collective.check.RegisterMod;
 import com.natamus.collective.check.ShouldLoadCheck;
-import com.natamus.omegamute.util.Reference;
+import com.serilum.omegamute.util.Reference;
 import net.fabricmc.api.ModInitializer;
 
 public class ModFabric implements ModInitializer {

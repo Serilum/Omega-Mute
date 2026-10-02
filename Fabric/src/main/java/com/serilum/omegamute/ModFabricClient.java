@@ -1,13 +1,13 @@
-package com.natamus.omegamute;
+package com.serilum.omegamute;
 
 import com.natamus.collective.fabric.callbacks.CollectiveSoundEvents;
-import com.natamus.omegamute.data.Constants;
-import com.natamus.omegamute.data.Variables;
-import com.natamus.omegamute.events.SoundEvents;
-import com.natamus.omegamute.fabric.cmds.FabricCommandOmega;
-import com.natamus.omegamute.util.Util;
+import com.serilum.omegamute.data.Constants;
+import com.serilum.omegamute.data.Variables;
+import com.serilum.omegamute.events.SoundEvents;
+import com.serilum.omegamute.fabric.cmds.FabricCommandOmega;
+import com.serilum.omegamute.util.Util;
 import net.fabricmc.api.ClientModInitializer;
-import com.natamus.omegamute.util.Reference;
+import com.serilum.omegamute.util.Reference;
 import com.natamus.collective.check.ShouldLoadCheck;
 import net.fabricmc.fabric.api.client.command.v2.ClientCommandRegistrationCallback;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientEntityEvents;

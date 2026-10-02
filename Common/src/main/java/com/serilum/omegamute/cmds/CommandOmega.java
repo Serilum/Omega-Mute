@@ -1,13 +1,13 @@
-package com.natamus.omegamute.cmds;
-import com.natamus.omegamute.util.Reference;
+package com.serilum.omegamute.cmds;
+import com.serilum.omegamute.util.Reference;
 
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.IntegerArgumentType;
 import com.mojang.brigadier.arguments.StringArgumentType;
 import com.natamus.collective.functions.MessageFunctions;
-import com.natamus.omegamute.data.Constants;
-import com.natamus.omegamute.data.Variables;
-import com.natamus.omegamute.util.Util;
+import com.serilum.omegamute.data.Constants;
+import com.serilum.omegamute.data.Variables;
+import com.serilum.omegamute.util.Util;
 import net.minecraft.ChatFormatting;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;

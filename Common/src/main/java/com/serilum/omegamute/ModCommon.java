@@ -1,4 +1,4 @@
-package com.natamus.omegamute;
+package com.serilum.omegamute;
 
 
 public class ModCommon {

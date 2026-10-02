@@ -1,4 +1,4 @@
-package com.natamus.omegamute.data;
+package com.serilum.omegamute.data;
 
 import java.util.ArrayList;
 import java.util.Date;

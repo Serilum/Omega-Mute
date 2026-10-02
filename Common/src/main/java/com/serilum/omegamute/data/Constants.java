@@ -1,4 +1,4 @@
-package com.natamus.omegamute.data;
+package com.serilum.omegamute.data;
 
 import com.mojang.logging.LogUtils;
 import net.minecraft.client.Minecraft;

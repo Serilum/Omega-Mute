@@ -1,9 +1,9 @@
-package com.natamus.omegamute.util;
+package com.serilum.omegamute.util;
 
 import com.natamus.collective.functions.DataFunctions;
 import com.natamus.collective.functions.NumberFunctions;
-import com.natamus.omegamute.data.Constants;
-import com.natamus.omegamute.data.Variables;
+import com.serilum.omegamute.data.Constants;
+import com.serilum.omegamute.data.Variables;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
