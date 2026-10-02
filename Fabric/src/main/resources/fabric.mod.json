@@ -1,11 +1,11 @@
 {
   "schemaVersion": 1,
   "id": "omegamute",
-  "version": "4.5",
+  "version": "4.6",
 
   "name": "Omega Mute",
   "description": "[Client] The last mod you'll ever need for culling and silencing Minecraft sounds while in-game or via a file.",
-  "authors": [ "Rick South" ],
+  "authors": [ "Serilum" ],
   "contact": {
     "homepage": "https://serilum.com/mod/omega-mute",
     "sources": "https://github.com/Serilum/Omega-Mute",
@@ -16,14 +16,14 @@
   "icon": "icon.png",
 
   "environment": "*",
-  "entrypoints": { "main": [ "com.natamus.omegamute.ModFabric" ], "client": [ "com.natamus.omegamute.ModFabricClient" ] },
+  "entrypoints": { "main": [ "com.serilum.omegamute.ModFabric" ], "client": [ "com.serilum.omegamute.ModFabricClient" ] },
 
   "depends": {
     "fabricloader": ">=0.18.0",
     "fabric-api": "*",
     "minecraft": ">=26.3",
     "java": ">=25",
-    "collective": ">=8.39"
+    "collective": ">=8.40"
   },
 
   "custom": {
@@ -38,7 +38,7 @@
 	  " ",
 	  "Thank you very much to my Membership sponsors for supporting the development of this mod!",
 	  " ",
-	  "If you would like to contribute too, check out https://serilum.com/donate.",
+	  "If you would like to contribute too, check out https://serilum.com/donate",
 	  " ",
 	  "Membership sponsors:",
 	  " Andrean Olgo",
