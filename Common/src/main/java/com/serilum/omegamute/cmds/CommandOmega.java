@@ -4,6 +4,7 @@ import com.serilum.omegamute.util.Reference;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.IntegerArgumentType;
 import com.mojang.brigadier.arguments.StringArgumentType;
+import com.natamus.collective.functions.CommandConfirmFunctions;
 import com.natamus.collective.functions.MessageFunctions;
 import com.serilum.omegamute.data.Constants;
 import com.serilum.omegamute.data.Variables;
@@ -11,6 +12,8 @@ import com.serilum.omegamute.util.Util;
 import net.minecraft.ChatFormatting;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.world.entity.player.Player;
 
 import java.util.ArrayList;
@@ -41,20 +44,20 @@ public class CommandOmega {
 			})))
 
 			.then(Commands.literal("mute")
-			.then(Commands.argument("string-contains", StringArgumentType.word())
+			.then(Commands.argument("string-contains", StringArgumentType.greedyString())
 			.executes((command) -> {
 				return mute(StringArgumentType.getString(command, "string-contains"));
 			})))
 
 			.then(Commands.literal("cull")
 			.then(Commands.argument("cull-time", IntegerArgumentType.integer(0, 3600))
-			.then(Commands.argument("string-contains", StringArgumentType.word())
+			.then(Commands.argument("string-contains", StringArgumentType.greedyString())
 			.executes((command) -> {
 				return cull(StringArgumentType.getString(command, "string-contains"), IntegerArgumentType.getInteger(command, "cull-time"));
 			}))))
 
 			.then(Commands.literal("unmute")
-			.then(Commands.argument("string-contains", StringArgumentType.word())
+			.then(Commands.argument("string-contains", StringArgumentType.greedyString())
 			.executes((command) -> {
 				return unmute(StringArgumentType.getString(command, "string-contains"));
 			})))
@@ -62,8 +65,12 @@ public class CommandOmega {
 			.then(Commands.literal("settings")
 			.then(Commands.literal("serilum")
 			.executes((command) -> {
-				return setupSettings("serilum");
-			})))
+				return CommandConfirmFunctions.askToConfirm(command, getSettingsWarning(), () -> applySettings("serilum"));
+			})
+			.then(Commands.literal("confirm")
+			.executes((command) -> {
+				return CommandConfirmFunctions.confirm(command);
+			}))))
 		);
 	}
 
@@ -72,16 +79,16 @@ public class CommandOmega {
 			return 1;
 		}
 
-		MessageFunctions.sendTranslatableMessage(Constants.mc.player, "collective.omegamute.message.reloadingomegamute", ChatFormatting.DARK_GREEN);
+		MessageFunctions.sendClientTranslatableMessage(Constants.mc.player, "collective.omegamute.message.reloadingomegamute", ChatFormatting.DARK_GREEN);
 		try {
 			if (Util.loadSoundFile()) {
-				MessageFunctions.sendTranslatableMessage(Constants.mc.player, "collective.omegamute.message.soundmapchangessuccessfully", ChatFormatting.DARK_GREEN);
+				MessageFunctions.sendClientTranslatableMessage(Constants.mc.player, "collective.omegamute.message.soundmapchangessuccessfully", ChatFormatting.DARK_GREEN);
 			}
 			else {
-				MessageFunctions.sendTranslatableMessage(Constants.mc.player, "collective.omegamute.message.soundmapfoundgenerated", ChatFormatting.DARK_GREEN);
+				MessageFunctions.sendClientTranslatableMessage(Constants.mc.player, "collective.omegamute.message.soundmapfoundgenerated", ChatFormatting.DARK_GREEN);
 			}
 		} catch (Exception ex) {
-			MessageFunctions.sendTranslatableMessage(Constants.mc.player, "collective.omegamute.message.somethingwentwrong", ChatFormatting.RED);
+			MessageFunctions.sendClientTranslatableMessage(Constants.mc.player, "collective.omegamute.message.somethingwentwrong", ChatFormatting.RED);
 		}
 		return 1;
 	}
@@ -108,15 +115,15 @@ public class CommandOmega {
 				return 1;
 			}
 
-			MessageFunctions.sendTranslatableMessage(Constants.mc.player, "collective.omegamute.message.followingsoundevents", ChatFormatting.DARK_GREEN);
-			MessageFunctions.sendMessage(Constants.mc.player, combined.toString(), ChatFormatting.YELLOW);
+			MessageFunctions.sendClientTranslatableMessage(Constants.mc.player, "collective.omegamute.message.followingsoundevents", ChatFormatting.DARK_GREEN);
+			MessageFunctions.sendClientMessage(Constants.mc.player, Component.literal(combined.toString()).withStyle(ChatFormatting.YELLOW));
 		}
 		else {
 			if (Constants.mc.player == null) {
 				return 1;
 			}
 
-			MessageFunctions.sendTranslatableMessage(Constants.mc.player, "collective.omegamute.message.currentlysoundevents", ChatFormatting.DARK_GREEN);
+			MessageFunctions.sendClientTranslatableMessage(Constants.mc.player, "collective.omegamute.message.currentlysoundevents", ChatFormatting.DARK_GREEN);
 		}
 
 		return 1;
@@ -133,18 +140,20 @@ public class CommandOmega {
 		if (Variables.playerIsListening) {
 			Variables.playerIsListening = false;
 
-			MessageFunctions.sendTranslatableMessage(Constants.mc.player, "collective.omegamute.message.stoppedlisteningactive", true, ChatFormatting.DARK_GREEN);
+			Util.sendEmptyLine();
+			MessageFunctions.sendClientTranslatableMessage(Constants.mc.player, "collective.omegamute.message.stoppedlisteningactive", ChatFormatting.DARK_GREEN);
 		}
 		else {
 			Variables.playerIsListening = true;
 
-			MessageFunctions.sendTranslatableMessage(Constants.mc.player, "collective.omegamute.message.listeningactivesounds", true, ChatFormatting.DARK_GREEN);
+			Util.sendEmptyLine();
+			MessageFunctions.sendClientTranslatableMessage(Constants.mc.player, "collective.omegamute.message.listeningactivesounds", ChatFormatting.DARK_GREEN);
 
 			if (listenToAll) {
-				MessageFunctions.sendTranslatableMessage(Constants.mc.player, "collective.omegamute.message.listeningsoundssee", ChatFormatting.GRAY);
+				MessageFunctions.sendClientTranslatableMessage(Constants.mc.player, "collective.omegamute.message.listeningsoundssee", ChatFormatting.GRAY);
 			}
 			else {
-				MessageFunctions.sendTranslatableMessage(Constants.mc.player, "collective.omegamute.message.listeningsoundsonce", ChatFormatting.GRAY);
+				MessageFunctions.sendClientTranslatableMessage(Constants.mc.player, "collective.omegamute.message.listeningsoundsonce", ChatFormatting.GRAY);
 			}
 		}
 
@@ -159,12 +168,12 @@ public class CommandOmega {
 
 		if (muted.size() > 0) {
 			String combined = String.join(", ", muted);
-			MessageFunctions.sendTranslatableMessage(Constants.mc.player, "collective.omegamute.message.byusingwildcardstring", ChatFormatting.DARK_GREEN, wildcard, muted.size());
-			MessageFunctions.sendMessage(Constants.mc.player, combined, ChatFormatting.YELLOW);
-			MessageFunctions.sendTranslatableMessage(Constants.mc.player, "collective.omegamute.message.soundmapfileupdated", ChatFormatting.DARK_GREEN);
+			MessageFunctions.sendClientTranslatableMessage(Constants.mc.player, "collective.omegamute.message.byusingwildcardstring", ChatFormatting.DARK_GREEN, wildcard, muted.size());
+			MessageFunctions.sendClientMessage(Constants.mc.player, Component.literal(combined).withStyle(ChatFormatting.YELLOW));
+			MessageFunctions.sendClientTranslatableMessage(Constants.mc.player, "collective.omegamute.message.soundmapfileupdated", ChatFormatting.DARK_GREEN);
 		}
 		else {
-			MessageFunctions.sendTranslatableMessage(Constants.mc.player, "collective.omegamute.message.soundeventsfound", ChatFormatting.RED, wildcard);
+			MessageFunctions.sendClientTranslatableMessage(Constants.mc.player, "collective.omegamute.message.soundeventsfound", ChatFormatting.RED, wildcard);
 		}
 
 		return 1;
@@ -178,12 +187,12 @@ public class CommandOmega {
 
 		if (muted.size() > 0) {
 			String combined = String.join(", ", muted);
-			MessageFunctions.sendTranslatableMessage(Constants.mc.player, "collective.omegamute.message.byusingwildcardstringfollowingsound", ChatFormatting.DARK_GREEN, wildcard, muted.size(), culltime);
-			MessageFunctions.sendMessage(Constants.mc.player, combined, ChatFormatting.YELLOW);
-			MessageFunctions.sendTranslatableMessage(Constants.mc.player, "collective.omegamute.message.soundmapfileupdated", ChatFormatting.DARK_GREEN);
+			MessageFunctions.sendClientTranslatableMessage(Constants.mc.player, "collective.omegamute.message.byusingwildcardstringfollowingsound", ChatFormatting.DARK_GREEN, wildcard, muted.size(), culltime);
+			MessageFunctions.sendClientMessage(Constants.mc.player, Component.literal(combined).withStyle(ChatFormatting.YELLOW));
+			MessageFunctions.sendClientTranslatableMessage(Constants.mc.player, "collective.omegamute.message.soundmapfileupdated", ChatFormatting.DARK_GREEN);
 		}
 		else {
-			MessageFunctions.sendTranslatableMessage(Constants.mc.player, "collective.omegamute.message.soundeventsfound", ChatFormatting.RED, wildcard);
+			MessageFunctions.sendClientTranslatableMessage(Constants.mc.player, "collective.omegamute.message.soundeventsfound", ChatFormatting.RED, wildcard);
 		}
 
 		return 1;
@@ -197,29 +206,32 @@ public class CommandOmega {
 
 		if (unmuted.size() > 0) {
 			String combined = String.join(", ", unmuted);
-			MessageFunctions.sendTranslatableMessage(Constants.mc.player, "collective.omegamute.message.byusingwildcardstringfollowing", ChatFormatting.DARK_GREEN, wildcard, unmuted.size());
-			MessageFunctions.sendMessage(Constants.mc.player, combined, ChatFormatting.YELLOW);
-			MessageFunctions.sendTranslatableMessage(Constants.mc.player, "collective.omegamute.message.soundmapfileupdated", ChatFormatting.DARK_GREEN);}
+			MessageFunctions.sendClientTranslatableMessage(Constants.mc.player, "collective.omegamute.message.byusingwildcardstringfollowing", ChatFormatting.DARK_GREEN, wildcard, unmuted.size());
+			MessageFunctions.sendClientMessage(Constants.mc.player, Component.literal(combined).withStyle(ChatFormatting.YELLOW));
+			MessageFunctions.sendClientTranslatableMessage(Constants.mc.player, "collective.omegamute.message.soundmapfileupdated", ChatFormatting.DARK_GREEN);}
 		else {
-			MessageFunctions.sendTranslatableMessage(Constants.mc.player, "collective.omegamute.message.soundeventsfound", ChatFormatting.RED, wildcard);
+			MessageFunctions.sendClientTranslatableMessage(Constants.mc.player, "collective.omegamute.message.soundeventsfound", ChatFormatting.RED, wildcard);
 		}
 
 		return 1;
 	}
 
-	public static int setupSettings(String identifier) {
+	public static MutableComponent getSettingsWarning() {
+		return Component.translatable("collective.omegamute.message.serilumsettingswarning").withStyle(ChatFormatting.YELLOW);
+	}
+
+	public static void applySettings(String identifier) {
 		if (identifier.equals("serilum")) {
 			cull(".step", 1); // Too many step sounds in an animal farm
-			MessageFunctions.sendMessage(Constants.mc.player, " ", ChatFormatting.WHITE);
+			Util.sendEmptyLine();
 			cull(".ambient", 1); // Too many ambient sounds in an animal farm
-			MessageFunctions.sendMessage(Constants.mc.player, " ", ChatFormatting.WHITE);
+			Util.sendEmptyLine();
 			mute("entity.cat.ambient");
-			MessageFunctions.sendMessage(Constants.mc.player, " ", ChatFormatting.WHITE);
+			Util.sendEmptyLine();
 			mute("entity.cat.stray_ambient"); // Because my IRL cats don't like the meows.
 
-			MessageFunctions.sendTranslatableMessage(Constants.mc.player, "collective.omegamute.message.serilumfavouritesettings", true, ChatFormatting.GOLD, Reference.NAME);
+			Util.sendEmptyLine();
+			MessageFunctions.sendClientTranslatableMessage(Constants.mc.player, "collective.omegamute.message.serilumfavouritesettings", ChatFormatting.GOLD, Reference.NAME);
 		}
-
-		return 1;
 	}
 }

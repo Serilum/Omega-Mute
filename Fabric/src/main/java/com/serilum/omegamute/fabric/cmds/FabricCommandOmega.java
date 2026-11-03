@@ -3,6 +3,7 @@ package com.serilum.omegamute.fabric.cmds;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.IntegerArgumentType;
 import com.mojang.brigadier.arguments.StringArgumentType;
+import com.natamus.collective.functions.CommandConfirmFunctions;
 import com.serilum.omegamute.cmds.CommandOmega;
 import net.fabricmc.fabric.api.client.command.v2.ClientCommands;
 import net.fabricmc.fabric.api.client.command.v2.FabricClientCommandSource;
@@ -32,20 +33,20 @@ public class FabricCommandOmega {
 			})))
 
 			.then(ClientCommands.literal("mute")
-			.then(ClientCommands.argument("string-contains", StringArgumentType.word())
+			.then(ClientCommands.argument("string-contains", StringArgumentType.greedyString())
 			.executes((command) -> {
 				return CommandOmega.mute(StringArgumentType.getString(command, "string-contains"));
 			})))
 
 			.then(ClientCommands.literal("cull")
 			.then(ClientCommands.argument("cull-time", IntegerArgumentType.integer(0, 3600))
-			.then(ClientCommands.argument("string-contains", StringArgumentType.word())
+			.then(ClientCommands.argument("string-contains", StringArgumentType.greedyString())
 			.executes((command) -> {
 				return CommandOmega.cull(StringArgumentType.getString(command, "string-contains"), IntegerArgumentType.getInteger(command, "cull-time"));
 			}))))
 
 			.then(ClientCommands.literal("unmute")
-			.then(ClientCommands.argument("string-contains", StringArgumentType.word())
+			.then(ClientCommands.argument("string-contains", StringArgumentType.greedyString())
 			.executes((command) -> {
 				return CommandOmega.unmute(StringArgumentType.getString(command, "string-contains"));
 			})))
@@ -53,8 +54,12 @@ public class FabricCommandOmega {
 			.then(ClientCommands.literal("settings")
 			.then(ClientCommands.literal("serilum")
 			.executes((command) -> {
-				return CommandOmega.setupSettings("serilum");
-			})))
+				return CommandConfirmFunctions.askToConfirm(command, CommandOmega.getSettingsWarning(), () -> CommandOmega.applySettings("serilum"));
+			})
+			.then(ClientCommands.literal("confirm")
+			.executes((command) -> {
+				return CommandConfirmFunctions.confirm(command);
+			}))))
 		);
 	}
 }

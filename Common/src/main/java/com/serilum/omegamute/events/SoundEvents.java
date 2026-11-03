@@ -68,7 +68,7 @@ public class SoundEvents {
 				Variables.soundsListenedTo.add(rawName);
 			}
 
-			MessageFunctions.sendMessage(Constants.mc.player, formattedNameComponent);
+			MessageFunctions.sendClientMessage(Constants.mc.player, formattedNameComponent);
 		}
 
 		return canPlay;
