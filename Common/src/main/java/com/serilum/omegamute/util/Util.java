@@ -77,6 +77,35 @@ public class Util {
 		return -1;
 	}
 
+	public static String readSoundMapText() {
+		try {
+			return Files.readString(file.toPath());
+		}
+		catch (IOException ignored) {
+			return "";
+		}
+	}
+
+	public static void writeSoundMapText(String soundMapText) {
+		try {
+			dir.mkdirs();
+			Files.writeString(file.toPath(), soundMapText);
+		}
+		catch (IOException ex) {
+			Constants.logger.warn("[" + Reference.NAME + "] Unable to write the sound map.");
+			return;
+		}
+
+		Constants.mc.execute(Util::reloadSoundFile);
+	}
+
+	private static void reloadSoundFile() {
+		try {
+			loadSoundFile();
+		}
+		catch (IOException ignored) { }
+	}
+
 	private static boolean hasCullTime(String soundEntry) {
 		String[] soundSplit = soundEntry.split("-", 2);
 		return soundSplit.length == 2 && soundSplit[0].matches("\\d+");
